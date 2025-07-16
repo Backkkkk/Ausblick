@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban-Board – Nachhilfe-Projekt</title>
+<<<<<<< HEAD
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      color: #333;
+    }
+    header {
+      background: #0d6efd;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .board {
+      display: flex;
+      gap: 1rem;
+      padding: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .column {
+      background: white;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem;
+      width: 300px;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+    .column h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      color: #0d6efd;
+    }
+    .column:nth-child(2) h2 {
+      color: #dc3545;
+    }
+    .column:nth-child(3) h2 {
+      color: #198754;
+    }
+    .task {
+      background: white;
+      color: black;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-left: 6px solid transparent;
+      border-radius: 6px;
+      cursor: grab;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #backlog .task {
+      border-left-color: #0d6efd;
+    }
+    #doing .task {
+      border-left-color: #dc3545;
+    }
+    #done .task {
+      border-left-color: #198754;
+    }
+    .task span {
+      color: black;
+      flex-grow: 1;
+      padding-right: 0.5rem;
+      word-break: break-word;
+    }
+    .task button {
+      background: #dc3545;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      padding: 0 0.5rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.2s ease;
+    }
+    .task button:hover {
+      background-color: #a71d2a;
+    }
+    .add-task {
+      text-align: center;
+      margin: 2rem;
+    }
+    .add-task input {
+      padding: 0.5rem;
+      width: 300px;
+      margin-right: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .add-task button {
+      padding: 0.5rem 1rem;
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+    .add-task button:hover {
+      background-color: #084298;
+    }
+    .upload-area {
+      text-align: center;
+      margin: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    footer {
+      background-color: #f1f3f5;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    .button-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .ab {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .ab:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+    .ab:active {
+      background-color: #3e8e41;
+      transform: scale(0.98);
+    }
+  </style>
+=======
+  <link rel="stylesheet" href="styles.css">
+
+>>>>>>> 8e7ae21ef3c0121ee5981160ce8475e6e6dcb1d1
+</head>
+<body>
+  <header>
+    <h1>Kanban-Board – Nachhilfe-Projekt (Grob)</h1>
+  </header>
+  <div class="board">
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>Backlog</h2>
+      <div id="backlog" class="task-list"></div>
+    </div>
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>In Arbeit</h2>
+      <div id="doing" class="task-list"></div>
+    </div>
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>Erledigt</h2>
+      <div id="done" class="task-list"></div>
+    </div>
+  </div>
+  <div class="add-task">
+    <input type="text" id="taskInput" placeholder="Neue Aufgabe..." />
+    <button onclick="addTask()">Hinzufügen</button>
+  </div>
+  <div class="upload-area">
+    <input type="file" id="fileInput" accept=".txt" />
+    <p>Dateiformat: Eine Aufgabe pro Zeile für den Backlog</p>
+  </div>
+  <div class="button-container">
+    <a href="/sites/Ausblick/Aublick.html">
+      <button class="ab">Ausblick</button>
+    </a>
+    <a href="/sites/pundn/pundn.html">
+      <button class="ab">Negativ und Positiv</button>
+    </a>
+  </div>
+  <footer>
+    © 2025 Nachhilfe-Projektteam
+  </footer>
+  <script>
+    let taskId = 0;
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+    function drop(ev) {
+      ev.preventDefault();
+      const data = ev.dataTransfer.getData("text");
+      const target = ev.target.closest(".column").querySelector(".task-list");
+      target.appendChild(document.getElementById(data));
+    }
+    function addTask(text) {
+      const input = document.getElementById("taskInput");
+      const taskText = text || input.value.trim();
+      if (!taskText) return;
+      const task = document.createElement("div");
+      task.className = "task";
+      task.draggable = true;
+      task.id = "task" + taskId++;
+      task.ondragstart = drag;
+      const span = document.createElement("span");
+      span.textContent = taskText;
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "✖";
+      delBtn.onclick = () => task.remove();
+      task.appendChild(span);
+      task.appendChild(delBtn);
+      document.getElementById("backlog").appendChild(task);
+      if (!text) input.value = "";
+    }
+    document.getElementById("fileInput").addEventListener("change", function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const lines = e.target.result.split("\n");
+        lines.forEach(line => {
+          if (line.trim()) addTask(line.trim());
+        });
+      };
+      reader.readAsText(file);
+    });
+  </script>
+</body>
+</html>
